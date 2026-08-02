@@ -1,0 +1,6 @@
+.vs/
+.vs
+vsidx
+appsettings.json
+obj/
+bin/

@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FilmesApi</name>
+    </assembly>
+    <members>
+        <member name="M:FilmesApi.Controllers.FilmeController.AdicionarFilme(FilmesApi.Data.Dtos.CreateFilmeDto)">
+            <summary>
+            Adiciona um filme ao banco de dados
+            </summary>
+            <param name="filmeDto">Objeto com os campos necessários para criação de um filme</param>
+            <returns>IActionResult</returns>
+            <response code="201">Caso inserção seja feita com sucesso</response>
+        </member>
+        <member name="M:FilmesApi.Controllers.FilmeController.BuscarTodosFilmes(System.Int32,System.Int32)">
+            <summary>
+            Retorna todos os filmes do banco de dados em um range de skip=0 e take=100
+            </summary>
+            <param name="skip">Campo necessário para paginação, ignorar um número especificado de elementos no início de uma sequência</param>
+            <param name="take">Campo necessário para paginação, retornar um número especificado de elementos contíguos a partir do início de uma sequência</param>
+            <returns>IEnumerable</returns>
+            <response code="200">Caso a busca seja feita com sucesso</response>
+        </member>
+        <member name="M:FilmesApi.Controllers.FilmeController.BuscarFilmePorId(System.Int32)">
+            <summary>
+            Retorna um filme do banco de dados passando um id específico
+            </summary>
+            <param name="id">Parametro necessário para retornar um filme especifico</param>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a busca seja feita com sucesso</response>
+        </member>
+        <member name="M:FilmesApi.Controllers.FilmeController.AtualizarFilme(System.Int32,FilmesApi.Data.Dtos.UpdateFilmeDto)">
+            <summary>
+            Atualiza um filme do banco de dados passando um id específico e um objeto com as novas informações 
+            </summary>
+            <param name="id">Campo necessário para a atualização de um filme</param>
+            <param name="filmeDto">Objeto com os campos necessários para a atualização de um filme</param>
+            <returns>IActionResult</returns>
+            <response code="204">Caso a atulização seja feita com sucesso</response>
+        </member>
+        <member name="M:FilmesApi.Controllers.FilmeController.AtualizarFilmeParcial(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{FilmesApi.Data.Dtos.UpdateFilmeDto})">
+            <summary>
+            Atualiza um filme do banco de dados passando informações parciais de um objeto com as novas informações 
+            </summary>
+            <param name="id">Campo necessário para a atualização de um filme</param>
+            <param name="pacth">Objeto com os campos necessários para a atualização de um filme de forma parcial</param>
+            <returns>IActionResult</returns>
+            <response code="204">Caso a atulização seja feita com sucesso</response>
+        </member>
+        <member name="M:FilmesApi.Controllers.FilmeController.DeletarFilme(System.Int32)">
+            <summary>
+            Deleta um filme do banco de dados passando um id específico
+            </summary>
+            <param name="id">Campo necessário para a exclusão de um filme do banco de dados</param>
+            <returns>IActionResult</returns>
+            <response code="204">Caso a exclusão seja feita com sucesso</response>
+        </member>
+        <member name="T:FilmesApi.Migrations.CriandoTabelaDeFilme">
+            <inheritdoc />
+        </member>
+        <member name="M:FilmesApi.Migrations.CriandoTabelaDeFilme.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FilmesApi.Migrations.CriandoTabelaDeFilme.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:FilmesApi.Migrations.CriandoTabelaDeFilme.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

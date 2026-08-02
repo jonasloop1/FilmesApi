@@ -1,0 +1,391 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "FilmesAPI",
+    "description": "Documentação Api Filmes - Alura",
+    "contact": {
+      "name": "Jonas",
+      "email": "Jonasloop1@gmail.com"
+    },
+    "version": "v 1.0"
+  },
+  "paths": {
+    "/Filme": {
+      "post": {
+        "tags": [
+          "Filme"
+        ],
+        "summary": "Adiciona um filme ao banco de dados",
+        "requestBody": {
+          "description": "Objeto com os campos necessários para criação de um filme",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFilmeDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFilmeDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFilmeDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFilmeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Caso inserção seja feita com sucesso"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Filme"
+        ],
+        "summary": "Retorna todos os filmes do banco de dados em um range de skip=0 e take=100",
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Campo necessário para paginação, ignorar um número especificado de elementos no início de uma sequência",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Campo necessário para paginação, retornar um número especificado de elementos contíguos a partir do início de uma sequência",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Caso a busca seja feita com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReadFilmeDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReadFilmeDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReadFilmeDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Filme/{id}": {
+      "get": {
+        "tags": [
+          "Filme"
+        ],
+        "summary": "Retorna um filme do banco de dados passando um id específico",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Parametro necessário para retornar um filme especifico",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Caso a busca seja feita com sucesso"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Filme"
+        ],
+        "summary": "Atualiza um filme do banco de dados passando um id específico e um objeto com as novas informações",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Campo necessário para a atualização de um filme",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objeto com os campos necessários para a atualização de um filme",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFilmeDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFilmeDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFilmeDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFilmeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Caso a atulização seja feita com sucesso"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Filme"
+        ],
+        "summary": "Atualiza um filme do banco de dados passando informações parciais de um objeto com as novas informações",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Campo necessário para a atualização de um filme",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objeto com os campos necessários para a atualização de um filme de forma parcial",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Caso a atulização seja feita com sucesso"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Filme"
+        ],
+        "summary": "Deleta um filme do banco de dados passando um id específico",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Campo necessário para a exclusão de um filme do banco de dados",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Caso a exclusão seja feita com sucesso"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateFilmeDto": {
+        "required": [
+          "duracao",
+          "genero",
+          "titulo"
+        ],
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "genero": {
+            "maxLength": 15,
+            "minLength": 0,
+            "type": "string"
+          },
+          "duracao": {
+            "maximum": 600,
+            "minimum": 70,
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Operation": {
+        "type": "object",
+        "properties": {
+          "operationType": {
+            "$ref": "#/components/schemas/OperationType"
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "op": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OperationType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ReadFilmeDto": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "nullable": true
+          },
+          "genero": {
+            "type": "string",
+            "nullable": true
+          },
+          "duracao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "horaDaConsulta": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateFilmeDto": {
+        "required": [
+          "duracao",
+          "genero",
+          "titulo"
+        ],
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "genero": {
+            "maxLength": 15,
+            "minLength": 0,
+            "type": "string"
+          },
+          "duracao": {
+            "maximum": 600,
+            "minimum": 70,
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
